@@ -17,7 +17,7 @@ export interface Author {
 export const AUTHORS: Author[] = [
   {
     id:     'lucky-living',
-    name:   'Lucky Living',
+    name:   'Jordan',
     bio:    'The Lucky Living editorial team tests and reviews the best products to help you live smarter every day.',
     avatar: '/images/brand/author-team.jpg',
     url:    '/about/',
