@@ -425,20 +425,27 @@ const heroArticle        = featuredArticles[0] ?? latestArticles[0] ?? null;
 
     <!-- ── Section header ───────────────────────────────── -->
     <div class="text-center mb-12 lg:mb-16">
-      <p class="eyebrow mb-3">Browse Topics</p>
+      <p class="eyebrow mb-3" data-animate="fade">Browse Topics</p>
       <h2
         id="categories-heading"
         class="font-serif font-bold text-slate-900 tracking-tight text-balance mb-4"
         style="font-size: clamp(2rem, 4vw, 3rem);"
+        data-animate="fade-up"
+        data-delay="100"
       >
         Every Topic Covered
       </h2>
-      <p class="text-slate-500 max-w-xl mx-auto leading-relaxed" style="font-size: 1.0625rem;">
+      <p
+        class="text-slate-500 max-w-xl mx-auto leading-relaxed"
+        style="font-size: 1.0625rem;"
+        data-animate="fade-up"
+        data-delay="200"
+      >
         From smart home tech to wellness and style — expert coverage across
         every corner of modern living.
       </p>
       <!-- Decorative divider -->
-      <div class="flex items-center justify-center gap-3 mt-6" aria-hidden="true">
+      <div class="flex items-center justify-center gap-3 mt-6" aria-hidden="true" data-animate="fade" data-delay="300">
         <div class="h-px w-16 bg-gradient-to-r from-transparent to-slate-300"></div>
         <div class="w-1.5 h-1.5 rounded-full bg-brand-accent"></div>
         <div class="h-px w-16 bg-gradient-to-l from-transparent to-slate-300"></div>
@@ -647,15 +654,22 @@ const heroArticle        = featuredArticles[0] ?? latestArticles[0] ?? null;
       <!-- ── Section header ─────────────────────────────── -->
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 lg:mb-16">
         <div>
-          <p class="eyebrow mb-3">Latest Stories</p>
+          <p class="eyebrow mb-3" data-animate="fade">Latest Stories</p>
           <h2
             id="latest-heading"
             class="font-serif font-bold text-slate-900 tracking-tight text-balance mb-4"
             style="font-size: clamp(2rem, 4vw, 3rem);"
+            data-animate="fade-up"
+            data-delay="100"
           >
             Discover Fresh Ideas<br class="hidden sm:block" /> Every Week
           </h2>
-          <p class="text-slate-500 max-w-lg leading-relaxed" style="font-size: 1.0625rem;">
+          <p
+            class="text-slate-500 max-w-lg leading-relaxed"
+            style="font-size: 1.0625rem;"
+            data-animate="fade-up"
+            data-delay="200"
+          >
             In-depth guides, honest reviews, smart home inspiration, wellness tips,
             and the technology that improves everyday life.
           </p>
@@ -914,15 +928,22 @@ const heroArticle        = featuredArticles[0] ?? latestArticles[0] ?? null;
       <!-- ── Section header ─────────────────────────────── -->
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 lg:mb-16">
         <div>
-          <p class="eyebrow mb-3" style="color: var(--color-brand-gold);">Editor's Picks</p>
+          <p class="eyebrow mb-3" style="color: var(--color-brand-gold);" data-animate="fade">Editor's Picks</p>
           <h2
             id="products-heading"
             class="font-serif font-bold text-slate-900 tracking-tight text-balance mb-4"
             style="font-size: clamp(2rem, 4vw, 3rem);"
+            data-animate="fade-up"
+            data-delay="100"
           >
             Featured Reviews
           </h2>
-          <p class="text-slate-500 max-w-lg leading-relaxed" style="font-size: 1.0625rem;">
+          <p
+            class="text-slate-500 max-w-lg leading-relaxed"
+            style="font-size: 1.0625rem;"
+            data-animate="fade-up"
+            data-delay="200"
+          >
             Every review is independently researched and rigorously tested — designed
             to help you make informed buying decisions with complete confidence.
           </p>
@@ -1254,8 +1275,8 @@ const heroArticle        = featuredArticles[0] ?? latestArticles[0] ?? null;
     <div class="container">
       <div class="section-header">
         <div>
-          <p class="eyebrow mb-1.5">Handpicked</p>
-          <h2 id="editors-heading" class="section-title">Editor's Picks</h2>
+          <p class="eyebrow mb-1.5" data-animate="fade">Handpicked</p>
+          <h2 id="editors-heading" class="section-title" data-animate="fade-up" data-delay="100">Editor's Picks</h2>
         </div>
         <a href="/category/reviews/" class="section-link hidden sm:inline">View all &rarr;</a>
       </div>
