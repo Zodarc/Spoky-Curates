@@ -36,7 +36,7 @@
  */
 
 // ── Types ────────────────────────────────────────────────────
-
+console.log("Lucky Living animations loaded");
 type AnimateValue = 'fade-up' | 'fade' | 'slide';
 
 // ── Reduced-motion check ─────────────────────────────────────
