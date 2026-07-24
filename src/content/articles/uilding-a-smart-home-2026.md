@@ -1,7 +1,7 @@
 ---
 title: "How to Build a Smart Home in 2026: A Beginner's Guide"
 description: "Learn how to create a smart home from scratch with the right devices, automation ideas, and practical upgrades for modern living."
-featuredImage: "/images/articles/smart-home-guide.jpg"
+featuredImage: "/images/articles/smart-home-guide.png"
 featuredImageAlt: "Modern smart home interior with connected devices"
 
 category: "smart-home"
