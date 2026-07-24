@@ -22,7 +22,7 @@ affiliateLinks:
   - label: "Amazon Echo (4th Gen) — Check Price"
     url: "https://amzn.to/4fqVXZe"
   - label: "Philips Hue Starter Kit — Check Price"
-    url: "https://www.amazon.com/dp/B07GXZ91DT?tag=your-tag-20"
+    url: "https://amzn.to/4w7KHaN"
   - label: "Google Nest Audio — Check Price"
     url: "https://amzn.to/3RLbR91"
 relatedArticles:
