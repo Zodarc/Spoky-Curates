@@ -26,7 +26,7 @@ export const CATEGORIES: Category[] = [
     seoTitle:       'Smart Home — Best Devices, Guides & Reviews | Lucky Living',
     seoDescription: 'Discover the best smart home devices, automation tips, and honest reviews. Lucky Living helps you build a smarter, more connected home.',
     keywords:       'smart home, home automation, smart devices, IoT, smart speakers, smart lighting',
-    image:          '/images/categories/smart-home.jpg',
+    image:          '/images/categories/smart-home.png',
     imageAlt:       'Smart home devices on a modern kitchen counter',
     color:          'bg-blue-600',
     accentHex:      '#2563EB',
