@@ -1,0 +1,27 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { SITE } from '@data/site';
+import { buildCanonical } from '@utils/seo';
+
+const canonical = buildCanonical('/contact-success/');
+---
+
+<BaseLayout
+  title="Message Sent"
+  description={`Thank you for contacting ${SITE.name}.`}
+  canonical={canonical}
+  noindex={true}
+>
+  <div class="container py-16 lg:py-24 max-w-2xl mx-auto text-center">
+
+    <h1 class="font-serif text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+      Message Sent
+    </h1>
+    <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+      Thank you for reaching out. We will review your message and get back to you
+      as soon as possible.
+    </p>
+    <a href="/" class="btn-primary inline-flex">Back to Home</a>
+
+  </div>
+</BaseLayout>
