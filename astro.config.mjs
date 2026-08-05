@@ -5,6 +5,11 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://lucky-living-astro.vercel.app',
 
+  server: {
+    host: '0.0.0.0',
+    port: 5000,
+  },
+
   integrations: [
     sitemap({
       filter: (page) =>
