@@ -14,7 +14,7 @@ tags:
   - wardrobe essentials
   - modern style
 
-author: "Lucky Living"
+author: "Spoky Curates"
 
 publishDate: 2026-07-24
 

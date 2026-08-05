@@ -1,4 +1,4 @@
-// ── Lucky Living — SEO Utilities ────────────────────────────
+// ── Spoky Curates — SEO Utilities ────────────────────────────
 import { SITE } from '@data/site';
 
 export interface SeoProps {

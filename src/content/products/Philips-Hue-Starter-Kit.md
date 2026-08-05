@@ -38,7 +38,7 @@ keywords:
   - Apple HomeKit
    
   
-author: "Lucky Living"
+author: "Spoky Curates"
 publishDate: 2026-07-24
 featured: true
 draft: false

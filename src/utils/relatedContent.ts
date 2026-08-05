@@ -1,4 +1,4 @@
-// ── Lucky Living — Related Content Utility ──────────────────
+// ── Spoky Curates — Related Content Utility ──────────────────
 import type { CollectionEntry } from 'astro:content';
 
 type Article = CollectionEntry<'articles'>;

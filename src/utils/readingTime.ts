@@ -1,4 +1,4 @@
-// ── Lucky Living — Reading Time Utility ─────────────────────
+// ── Spoky Curates — Reading Time Utility ─────────────────────
 
 const WORDS_PER_MINUTE = 238; // average adult reading speed
 

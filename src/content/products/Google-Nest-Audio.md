@@ -40,7 +40,7 @@ keywords:
   - smart home devices
    
   
-author: "Lucky Living"
+author: "Spoky Curates"
 publishDate: 2026-07-20
 featured: true
 draft: false

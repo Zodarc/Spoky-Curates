@@ -4,7 +4,7 @@ description: "Discover the biggest wellness trends shaping 2026, from better sle
 category: "wellness"
 featuredImage: "/images/articles/Wellness-Trends-2026.png"
 featuredImageAlt: "Modern wellness lifestyle scene, luxury bedroom with natural sunlight"
-author: "Lucky Living"
+author: "Spoky Curates"
 
 seoTitle: "The Wellness Trends Shaping 2026: Smarter Health, Better Recovery & Balance"
 
@@ -148,4 +148,4 @@ A healthier life does not require extreme routines — it requires better habits
 
 From creating a better sleep environment to choosing personalized wellness strategies, modern self-care is becoming more intentional, realistic, and sustainable.
 
-At Lucky Living, we believe the best wellness upgrades are the ones that naturally fit into your everyday life.
+At Spoky Curates, we believe the best wellness upgrades are the ones that naturally fit into your everyday life.

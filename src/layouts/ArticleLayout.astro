@@ -37,7 +37,7 @@ const { entry } = Astro.props;
 const { data }  = entry;
 
 const category  = getCategoryBySlug(data.category);
-const author    = getAuthorById(data.author ?? 'lucky-living');
+const author    = getAuthorById(data.author ?? 'spoky-curates');
 const canonical = buildCanonical(`/articles/${entry.slug}/`);
 
 // Reading time from rendered body

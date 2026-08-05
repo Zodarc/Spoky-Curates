@@ -1,8 +1,8 @@
 {
-  "name": "lucky-living",
+  "name": "spoky-curates",
   "type": "module",
   "version": "1.0.0",
-  "description": "Lucky Living — Smarter Products. Better Life.",
+  "description": "Spoky Curates — Smarter Products. Better Life.",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",

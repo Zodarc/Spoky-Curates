@@ -1,5 +1,5 @@
 /* =============================================================
-   Lucky Living — Design System
+   Spoky Curates — Design System
    Tailwind 4 · global.css
    ============================================================= */
 
@@ -895,7 +895,7 @@
   /* ── Prose (article body) ───────────────────────────────── */
   /*
      Tailwind Typography plugin styles `.prose` automatically.
-     These overrides layer on top for Lucky Living's brand voice.
+     These overrides layer on top for Spoky Curates's brand voice.
   */
 
   .prose :where(h2) {

@@ -1,4 +1,4 @@
-// ── Lucky Living — Author Profiles ──────────────────────────
+// ── Spoky Curates — Author Profiles ──────────────────────────
 // Add author profiles here. The 'id' matches the 'author' field in article frontmatter.
 
 export interface Author {
@@ -16,9 +16,9 @@ export interface Author {
 
 export const AUTHORS: Author[] = [
   {
-    id:     'lucky-living',
+    id:     'spoky-curates',
     name:   'Jordan',
-    bio:    'The Lucky Living editorial team tests and reviews the best products to help you live smarter every day.',
+    bio:    'The Spoky Curates editorial team tests and reviews the best products to help you live smarter every day.',
     avatar: '/images/brand/author-team.jpg',
     url:    '/about/',
     social: {

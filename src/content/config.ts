@@ -23,7 +23,7 @@ const articlesCollection = defineCollection({
     tags: z.array(z.string()).optional().default([]),
 
     // Authorship & dates
-    author:      z.string().optional().default('Lucky Living'),
+    author:      z.string().optional().default('Spoky Curates'),
     publishDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
 
@@ -158,7 +158,7 @@ const productsCollection = defineCollection({
     // Authorship
     author: z.string()
       .optional()
-      .default('Lucky Living'),
+      .default('Spoky Curates'),
 
     publishDate: z.coerce.date(),
 

@@ -10,9 +10,9 @@ tags:
   - smart speakers
   - smart lighting
   - home automation
-author: "Lucky Living"
+author: "Spoky Curates"
 publishDate: 2026-07-21
-seoTitle: "10 Best Smart Home Devices of 2026 — Tested & Ranked | Lucky Living"
+seoTitle: "10 Best Smart Home Devices of 2026 — Tested & Ranked | Spoky Curates"
 seoDescription: "We tested the top smart home gadgets of 2026. Here are the 10 best smart home devices worth buying this year, from starters to upgrades."
 keywords:
   - best smart home devices 2026

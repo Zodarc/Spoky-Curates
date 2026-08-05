@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://lucky-living-astro.vercel.app',
+  site: 'https://spokycurates.com',
 
   server: {
     host: '0.0.0.0',

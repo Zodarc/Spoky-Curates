@@ -1,7 +1,7 @@
 /**
  * animations.ts
  *
- * Scroll-reveal animation system for Lucky Living.
+ * Scroll-reveal animation system for Spoky Curates.
  * Uses IntersectionObserver — no external libraries, no frameworks.
  *
  * Usage in any .astro template:
@@ -36,7 +36,7 @@
  */
 
 // ── Types ────────────────────────────────────────────────────
-console.log("Lucky Living animations loaded");
+console.log("Spoky Curates animations loaded");
 type AnimateValue = 'fade-up' | 'fade' | 'slide';
 
 // ── Reduced-motion check ─────────────────────────────────────

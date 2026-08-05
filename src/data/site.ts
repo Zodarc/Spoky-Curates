@@ -1,19 +1,19 @@
-// ── Lucky Living — Site Configuration ───────────────────────
+// ── Spoky Curates — Site Configuration ───────────────────────
 // Edit this file to update global site settings.
 // No code changes needed elsewhere.
 
 export const SITE = {
-  name:        'Lucky Living',
+  name:        'Spoky Curates',
   tagline:     'Smarter Products. Better Life.',
-  description: 'Discover smarter products, honest reviews, and lifestyle upgrades. Lucky Living covers smart home, tech, wellness, style, and the best deals online.',
-  url:         'https://lucky-living-astro.vercel.app/',
+  description: 'Discover smarter products, honest reviews, and lifestyle upgrades. Spoky Curates covers smart home, tech, wellness, style, and the best deals online.',
+  url:         'https://spokycurates.com/',
   language:    'en',
   locale:      'en_US',
 
   // Branding
   logo: {
     src:    '/images/brand/logo.svg',
-    alt:    'Lucky Living',
+    alt:    'Spoky Curates',
     width:  180,
     height: 40,
   },
@@ -23,7 +23,7 @@ export const SITE = {
   seo: {
     titleSeparator:  ' | ',
     defaultKeywords: 'smart home, product reviews, lifestyle, tech gadgets, home design, wellness, best deals',
-    twitterHandle:   '@luckyliving',
+    twitterHandle:   '@spokycurates',
   },
 
   // Navigation
@@ -57,7 +57,7 @@ export const SITE = {
 
   // Affiliate
   affiliate: {
-    amazonTag:       'luckyliving07-20',   // Your Amazon Associates tag e.g. 'luckyliving-20'
+    amazonTag:       'spokycurates-20',   // Your Amazon Associates tag e.g. 'spokycurates-20'
     disclosureShort: 'We may earn a commission from links on this page.',
     disclosureUrl:   '/affiliate-disclosure/',
   },
@@ -73,7 +73,7 @@ export const SITE = {
   },
 
   // Copyright
-  copyright: `© ${new Date().getFullYear()} Lucky Living. All rights reserved.`,
+  copyright: `© ${new Date().getFullYear()} Spoky Curates. All rights reserved.`,
 } as const;
 
 export type NavItem = (typeof SITE.nav)[number];

@@ -15,7 +15,7 @@ tags:
   - future technology
   - smart devices
 
-author: "Lucky Living"
+author: "Spoky Curates"
 
 publishDate: 2026-07-24
 

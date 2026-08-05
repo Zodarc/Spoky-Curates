@@ -4,4 +4,4 @@ Allow: /
 # Block build artifacts
 Disallow: /_astro/
 
-Sitemap: https://lucky-living-astro.vercel.app/sitemap-index.xml
+Sitemap: https://spokycurates.com/sitemap-index.xml

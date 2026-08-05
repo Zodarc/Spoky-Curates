@@ -1,8 +1,8 @@
-# Lucky Living
+# Spoky Curates
 
-**Lucky Living — Smarter Products. Better Life.**
+**Spoky Curates — Smarter Products. Better Life.**
 
-A polished, content-driven Astro 4 static site for lifestyle and product-review publishing. Covers smart home, tech, wellness, style, and deals categories.
+A polished, content-driven Astro 4 static site for lifestyle and product-review publishing. Covers smart home, tech, wellness, style, and deals categories. Rebranded from Lucky Living.
 
 ## Stack
 
@@ -35,8 +35,10 @@ The dev workflow is configured as **Start application** (`npm run dev`, port 500
 
 ## Notes
 
-- `astro.config.mjs` has `site` set to `https://lucky-living-astro.vercel.app` — update this if deploying to a different domain.
+- `astro.config.mjs` `site` is set to `https://spokycurates.com`.
 - The dev server binds to `0.0.0.0:5000` for Replit preview compatibility.
+- Amazon Associates tag placeholder: `spokycurates-20` — update in `src/data/site.ts`.
+- Twitter handle placeholder: `@spokycurates` — update in `src/data/site.ts` when ready.
 
 ## User preferences
 

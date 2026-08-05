@@ -10,10 +10,10 @@ tags:
   - smart devices
   - connected living
 
-author: "Lucky Living"
+author: "Spoky Curates"
 publishDate: 2026-07-24
 
-seoTitle: "Best Smart Home Devices in 2026 | Lucky Living"
+seoTitle: "Best Smart Home Devices in 2026 | Spoky Curates"
 seoDescription: "Explore smart home technology that makes your home more comfortable, secure, and efficient."
 keywords:
   - best smart home devices

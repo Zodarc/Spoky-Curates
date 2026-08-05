@@ -36,7 +36,7 @@ const relatedProducts = getRelatedProducts(
 );
 
 const category  = getCategoryBySlug(data.category);
-const author    = getAuthorById(data.author ?? 'lucky-living');
+const author    = getAuthorById(data.author ?? 'spoky-curates');
 const canonical = buildCanonical(`/reviews/${entry.slug}/`);
 
 const { Content } = await entry.render();

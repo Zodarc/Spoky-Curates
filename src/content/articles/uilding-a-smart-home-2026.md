@@ -12,7 +12,7 @@ tags:
   - smart devices
   - connected living
 
-author: "Lucky Living"
+author: "Spoky Curates"
 
 publishDate: 2026-07-24
 

@@ -17,7 +17,7 @@ tags:
   - buying guide
   - home automation
 
-author: "Lucky Living"
+author: "Spoky Curates"
 
 publishDate: 2026-07-20
 

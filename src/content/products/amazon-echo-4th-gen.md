@@ -18,13 +18,13 @@ cons:
   - "Locked into the Alexa ecosystem"
   - "No built-in screen"
   - "Requires Amazon account"
-seoTitle: "Amazon Echo (4th Gen) Review 2025 — Worth It? | Lucky Living"
+seoTitle: "Amazon Echo (4th Gen) Review 2025 — Worth It? | Spoky Curates"
 seoDescription: "Our full Amazon Echo 4th Gen review. Is it the best smart speaker for your home in 2025? We break down sound quality, features, and value."
 keywords:
   - amazon echo 4th gen review
   - best smart speaker 2025
   - alexa smart speaker
-author: "Lucky Living"
+author: "Spoky Curates"
 publishDate: 2025-07-01
 featured: true
 draft: false

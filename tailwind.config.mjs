@@ -23,7 +23,7 @@ export default {
       typography: () => ({
         DEFAULT: {
           css: {
-            // Match Lucky Living body copy
+            // Match Spoky Curates body copy
             '--tw-prose-body':           '#475569',
             '--tw-prose-headings':       '#0F172A',
             '--tw-prose-lead':           '#475569',

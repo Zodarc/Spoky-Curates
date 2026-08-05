@@ -1,0 +1,291 @@
+I need you to perform a complete production-level rebrand of this entire project.
+
+The website is being renamed from:
+
+OLD BRAND:
+
+* Lucky Living
+* Lucky Living Astro
+* lucky-living
+* lucky-living-astro
+* lucky-living-astro.vercel.app
+
+NEW BRAND:
+
+* Spoky Curates
+* spokycurates.com
+
+Your task is to update EVERYTHING related to the old branding across the entire repository.
+
+## 1. Global Brand Replacement
+
+Search the entire codebase and replace all occurrences of:
+
+* "Lucky Living" → "Spoky Curates"
+* "Lucky living" → "Spoky Curates"
+* "LUCKY LIVING" → "SPOKY CURATES"
+* "Lucky-Living" → "Spoky-Curates"
+* "lucky-living" → "spoky-curates"
+* "lucky_living" → "spoky_curates"
+* "LuckyLiving" → "SpokyCurates"
+* "lucky-living-astro" → "spoky-curates"
+* "lucky-living-astro.vercel.app" → "spokycurates.com"
+* Any old domain URLs → "https://spokycurates.com"
+
+Do not perform blind replacements. Check each occurrence and make sure the new branding makes semantic sense.
+
+## 2. Update Website Identity
+
+Update all branding elements including:
+
+* Logo text
+* Brand name displays
+* Navigation menus
+* Header components
+* Footer components
+* Homepage branding
+* Hero sections
+* About pages
+* Contact pages
+* Newsletter sections
+* CTA buttons
+* Copyright text
+* Author/company information
+* Any "About Lucky Living" references
+* Any "Welcome to Lucky Living" text
+* Any brand descriptions
+
+Everything should now represent:
+
+"Spoky Curates"
+
+as a premium editorial product curation website.
+
+## 3. Update SEO Configuration
+
+Review and update all SEO-related files:
+
+* SEO titles
+* Meta titles
+* Meta descriptions
+* Canonical URLs
+* Open Graph metadata
+* Twitter card metadata
+* JSON-LD structured data
+* Schema.org information
+* Organization schema
+* Website schema
+* Article schema
+* Author information
+* Publisher information
+
+Replace old URLs with:
+
+https://spokycurates.com
+
+Make sure:
+
+* Site name is Spoky Curates
+* SEO descriptions match the new brand
+* No old domain remains
+* Social sharing previews use the new branding
+
+## 4. Update Astro Configuration
+
+Check and update:
+
+* astro.config.mjs
+* site configuration files
+* environment variables
+* sitemap configuration
+* RSS feed configuration
+* integrations
+* build settings
+* public metadata files
+
+Update:
+
+* site URL
+* site name
+* description
+* author/publisher details
+
+Ensure sitemap generates:
+
+https://spokycurates.com/...
+
+instead of the old domain.
+
+## 5. Update Content
+
+Search all content files:
+
+* Markdown files
+* MDX files
+* JSON content
+* YAML files
+* JavaScript content files
+* TypeScript content files
+
+Update:
+
+* Article references
+* Category descriptions
+* Product review pages
+* Affiliate pages
+* Author bios
+* Editorial statements
+* Internal links
+
+Make sure all content feels like it belongs to Spoky Curates.
+
+## 6. Update Images and Assets
+
+Check:
+
+* Image filenames
+* Image folders
+* Alt text
+* Image captions
+* OG images
+* Favicons
+* Logos
+* Branding assets
+
+Rename files where appropriate:
+
+Example:
+old:
+public/images/lucky-living-logo.svg
+
+new:
+public/images/spoky-curates-logo.svg
+
+Update every reference to renamed assets.
+
+## 7. Update Legal and Business Information
+
+Review and update:
+
+* Privacy Policy
+* Terms of Service
+* Affiliate Disclosure
+* Contact information
+* Footer legal text
+
+Replace all Lucky Living references with Spoky Curates.
+
+Make sure affiliate disclosures remain accurate.
+
+## 8. Update URLs and Internal Links
+
+Find and replace:
+
+* Internal links
+* Navigation URLs
+* Canonical links
+* RSS links
+* Sitemap links
+* Article URLs
+* Social links
+
+Check for:
+
+* broken links
+* redirects needed
+* outdated references
+
+## 9. Database / API / Configuration Checks
+
+If the project contains:
+
+* Firebase configuration
+* CMS references
+* API settings
+* environment variables
+* analytics IDs
+* deployment settings
+
+Check whether branding/domain values need updating.
+
+Do not expose or modify secrets.
+
+## 10. Deployment Preparation
+
+Prepare the project for deployment on:
+
+https://spokycurates.com
+
+Check:
+
+* Vercel configuration
+* Domain settings references
+* Build configuration
+* Redirect configuration
+* Robots.txt
+* Sitemap.xml
+* RSS feed
+
+Update robots.txt if necessary.
+
+## 11. SEO Migration Protection
+
+Because the domain is changing, implement SEO-safe migration practices:
+
+* Update canonical URLs
+* Update sitemap URLs
+* Update Open Graph URLs
+* Update RSS URLs
+* Check article URLs
+* Add redirects if applicable
+* Remove old staging domain references
+* Ensure search engines see Spoky Curates as the primary site
+
+## 12. Code Quality Check
+
+After completing the rebrand:
+
+Run:
+
+npm run build
+
+Fix any errors caused by the changes.
+
+Check for:
+
+* broken imports
+* missing renamed files
+* broken image paths
+* TypeScript errors
+* Astro errors
+* CSS issues
+
+## 13. Final Verification
+
+Perform a final global search for:
+
+* Lucky
+* Living
+* lucky-living
+* lucky_living
+* lucky-living-astro
+* lucky-living-astro.vercel.app
+
+There should be no remaining references unless they are intentionally kept for migration purposes.
+
+Provide a final report containing:
+
+1. All files changed
+2. All renamed files
+3. Any manual steps required
+4. Build result
+5. Remaining references found (if any)
+6. SEO migration recommendations
+
+The final project should be fully branded as:
+
+Spoky Curates
+
+with the official domain:
+
+https://spokycurates.com
