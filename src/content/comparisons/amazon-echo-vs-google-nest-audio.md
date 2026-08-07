@@ -1,6 +1,6 @@
 ---
 productA: amazon-echo-4th-gen
-productB: google-nest-audio
+productB: Google-Nest-Audio
 verdict: >
   For most households the Amazon Echo (4th Gen) is the better buy. At a lower
   price it delivers comparable sound, a faster smart-home response time, and the
