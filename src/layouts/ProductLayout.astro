@@ -8,6 +8,7 @@ import BaseLayout           from './BaseLayout.astro';
 import Breadcrumbs          from '@components/Breadcrumbs.astro';
 import AffiliateButton      from '@components/AffiliateButton.astro';
 import NewsletterSection    from '@components/NewsletterSection.astro';
+import { Image }            from 'astro:assets';
 import { SITE }             from '@data/site';
 import { getCategoryBySlug }from '@data/categories';
 import { getAuthorById }    from '@data/authors';
@@ -17,6 +18,7 @@ import {
   buildCanonical,
 }                           from '@utils/seo';
 import { formatDate, isoDate, getRelatedProducts } from '@utils/relatedContent';
+import { resolveImage }     from '@utils/imageResolver';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
@@ -49,7 +51,7 @@ const productSchema    = buildProductSchema({
   image:        data.image,
   rating:       data.rating,
   affiliateUrl: data.affiliateUrl,
-  price:        data.pricePlaceholder,
+  price:        data.priceDisplay,
 });
 
 const breadcrumbSchema = buildBreadcrumbSchema([
@@ -68,6 +70,10 @@ function renderStars(rating: number): { full: number; half: boolean; empty: numb
 }
 
 const stars = data.rating ? renderStars(data.rating) : null;
+
+// Resolve main product image and gallery images for Astro optimisation
+const mainImageAsset    = resolveImage(data.image);
+const galleryAssets     = (data.gallery ?? []).map((p) => ({ src: p, asset: resolveImage(p) }));
 ---
 
 <BaseLayout
@@ -102,15 +108,27 @@ const stars = data.rating ? renderStars(data.rating) : null;
   <div class="rounded-2xl overflow-hidden bg-slate-50 aspect-square flex items-center justify-center">
 
     {data.image ? (
-      <img
-        src={data.image}
-        alt={data.imageAlt || data.name}
-        width="600"
-        height="600"
-        class="w-full h-full object-contain p-6"
-        loading="eager"
-        fetchpriority="high"
-      />
+      mainImageAsset ? (
+        <Image
+          src={mainImageAsset}
+          alt={data.imageAlt || data.name}
+          widths={[300, 600, 900]}
+          sizes="(max-width: 768px) 100vw, 600px"
+          class="w-full h-full object-contain p-6"
+          loading="eager"
+          fetchpriority="high"
+        />
+      ) : (
+        <img
+          src={data.image}
+          alt={data.imageAlt || data.name}
+          width="600"
+          height="600"
+          class="w-full h-full object-contain p-6"
+          loading="eager"
+          fetchpriority="high"
+        />
+      )
     ) : (
       <div class="text-slate-400 text-sm">
         No image available
@@ -124,16 +142,29 @@ const stars = data.rating ? renderStars(data.rating) : null;
 
     <div class="grid grid-cols-4 gap-3">
 
-      {data.gallery.map((img) => (
+      {galleryAssets.map(({ src, asset }, i) => (
 
         <div class="rounded-xl overflow-hidden bg-slate-50 border border-slate-200">
 
-          <img
-            src={img}
-            alt={data.name}
-            loading="lazy"
-            class="w-full h-20 object-contain p-2"
-          />
+          {asset ? (
+            <Image
+              src={asset}
+              alt={`${data.name} — photo ${i + 1}`}
+              widths={[120, 240]}
+              sizes="(max-width: 768px) 25vw, 120px"
+              loading="lazy"
+              class="w-full h-20 object-contain p-2"
+            />
+          ) : (
+            <img
+              src={src}
+              alt={`${data.name} — photo ${i + 1}`}
+              width="120"
+              height="80"
+              loading="lazy"
+              class="w-full h-20 object-contain p-2"
+            />
+          )}
 
         </div>
 
@@ -178,8 +209,28 @@ const stars = data.rating ? renderStars(data.rating) : null;
                 </svg>
               ))}
               {stars.half && (
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 opacity-50" aria-hidden="true">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5" aria-hidden="true">
+                  {/* Filled left half */}
+                  <defs>
+                    <clipPath id="half-star-left">
+                      <rect x="0" y="0" width="12" height="24" />
+                    </clipPath>
+                    <clipPath id="half-star-right">
+                      <rect x="12" y="0" width="12" height="24" />
+                    </clipPath>
+                  </defs>
+                  <path
+                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                    fill="currentColor"
+                    clip-path="url(#half-star-left)"
+                  />
+                  <path
+                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    clip-path="url(#half-star-right)"
+                  />
                 </svg>
               )}
               {Array.from({ length: stars.empty }).map(() => (
@@ -195,10 +246,10 @@ const stars = data.rating ? renderStars(data.rating) : null;
 
         <!-- Price + CTA -->
         <div class="rounded-2xl bg-slate-50 border border-slate-200 p-6 flex flex-col gap-4">
-          {data.pricePlaceholder && (
+          {data.priceDisplay && (
             <div>
               <p class="text-xs uppercase tracking-widest text-slate-400 mb-1">Price</p>
-              <p class="text-3xl font-bold text-slate-900">{data.pricePlaceholder}</p>
+              <p class="text-3xl font-bold text-slate-900">{data.priceDisplay}</p>
             </div>
           )}
           <AffiliateButton

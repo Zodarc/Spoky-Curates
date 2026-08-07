@@ -21,9 +21,12 @@ export const SITE = {
 
   // SEO defaults
   seo: {
-    titleSeparator:  ' | ',
-    defaultKeywords: 'smart home, product reviews, lifestyle, tech gadgets, home design, wellness, best deals',
-    twitterHandle:   '@spokycurates',
+    titleSeparator:       ' | ',
+    defaultKeywords:      'smart home, product reviews, lifestyle, tech gadgets, home design, wellness, best deals',
+    twitterHandle:        '@spokycurates',
+    // Paste your Google Search Console verification token here.
+    // Found at: Search Console → Settings → Ownership verification → HTML tag → content="..."
+    googleSiteVerification: 'Wr1Dqol3j0bOExREbh55RpaI-5YZellpovERmVKFlDo',
   },
 
   // Navigation

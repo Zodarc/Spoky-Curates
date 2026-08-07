@@ -8,7 +8,7 @@ import ArticleCard         from '@components/ArticleCard.astro';
 import ProductCard         from '@components/ProductCard.astro';
 import NewsletterSection   from '@components/NewsletterSection.astro';
 import { CATEGORIES, getCategoryBySlug } from '@data/categories';
-import { buildCanonical }  from '@utils/seo';
+import { buildCanonical, buildBreadcrumbSchema } from '@utils/seo';
 import { getCollection }   from 'astro:content';
 
 export async function getStaticPaths() {
@@ -42,13 +42,19 @@ const products = allProducts.sort(
 
 const canonical = buildCanonical(`/category/${slug}/`);
 const totalItems = articles.length + products.length;
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: 'Home',           url: '/' },
+  { name: category.name,    url: `/category/${slug}/` },
+]);
 ---
 
 <BaseLayout
   title={category.seoTitle}
   description={category.seoDescription}
-  keywords={category.keywords.split(', ')}
+  keywords={category.keywords}
   canonical={canonical}
+  schema={breadcrumbSchema}
 >
 
   <!-- ── Category hero ──────────────────────────────────── -->

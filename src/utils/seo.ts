@@ -152,6 +152,27 @@ export function buildWebsiteSchema(): string {
 }
 
 /**
+ * Build JSON-LD Organization schema.
+ * Used on the About page to identify the site as an Organization.
+ */
+export function buildOrganizationSchema(): string {
+  const sameAs = Object.values(SITE.social).filter(Boolean);
+  const schema: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type':    'Organization',
+    name:       SITE.name,
+    url:        SITE.url,
+    logo: {
+      '@type': 'ImageObject',
+      url:     buildOgImageUrl(SITE.logo.src),
+    },
+    description: SITE.description,
+  };
+  if (sameAs.length) schema.sameAs = sameAs;
+  return JSON.stringify(schema);
+}
+
+/**
  * Build JSON-LD BreadcrumbList schema.
  */
 export function buildBreadcrumbSchema(

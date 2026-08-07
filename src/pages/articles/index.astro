@@ -7,17 +7,32 @@ import ArticleCard from '@components/ArticleCard.astro';
 import NewsletterSection from '@components/NewsletterSection.astro';
 import { buildCanonical } from '@utils/seo';
 import { getCollection } from 'astro:content';
+import { SITE } from '@data/site';
 
 const articles = (await getCollection('articles', (e) => !e.data.draft))
   .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
 
 const canonical = buildCanonical('/articles/');
+
+const itemListSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type':    'ItemList',
+  name:       'Articles — ' + SITE.name,
+  url:        canonical,
+  itemListElement: articles.map((article, i) => ({
+    '@type':   'ListItem',
+    position:  i + 1,
+    url:       SITE.url.replace(/\/$/, '') + `/articles/${article.slug}/`,
+    name:      article.data.title,
+  })),
+});
 ---
 
 <BaseLayout
   title="Articles"
   description="Expert guides, honest reviews, and lifestyle tips from Spoky Curates."
   canonical={canonical}
+  schema={itemListSchema}
 >
 
   <section class="relative py-16 lg:py-24 bg-slate-900 text-white">

@@ -95,8 +95,9 @@ const productsCollection = defineCollection({
       .optional()
       .default('Check Price on Amazon'),
 
-    pricePlaceholder: z.string()
-      .optional(),
+    priceDisplay: z.string()
+      .optional()
+      .describe('Editorial price label shown in the UI (e.g. "$99.99"). This is NOT a live price — update manually when the price changes.'),
 
 
     // Review scoring
@@ -137,10 +138,6 @@ const productsCollection = defineCollection({
 
     // Related content
     relatedProducts: z.array(z.string())
-      .optional()
-      .default([]),
-
-    relatedArticles: z.array(z.string())
       .optional()
       .default([]),
 
