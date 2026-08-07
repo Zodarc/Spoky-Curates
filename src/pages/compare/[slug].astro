@@ -14,7 +14,7 @@ import Breadcrumbs     from '@components/Breadcrumbs.astro';
 import { Image }       from 'astro:assets';
 import { buildCanonical, buildBreadcrumbSchema } from '@utils/seo';
 import { resolveImage } from '@utils/imageResolver';
-import { getCollection, getEntry, render } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 
 export async function getStaticPaths() {
   const comparisons = await getCollection('comparisons', (c) => !c.data.draft);
@@ -30,7 +30,7 @@ const [productA, productB] = await Promise.all([
   getEntry(comparison.data.productB),
 ]);
 
-const { Content } = await render(comparison);
+const { Content } = await comparison.render();
 
 const canonical = buildCanonical(`/compare/${slug}/`);
 

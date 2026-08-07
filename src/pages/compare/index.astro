@@ -1,0 +1,205 @@
+---
+/**
+ * compare/index.astro — Comparisons listing page
+ *
+ * Route:  /compare/
+ *
+ * Lists every published comparison (draft: false), sorted newest first.
+ * Resolves productA and productB for each entry so we can show product
+ * names and images without the reader needing to click through first.
+ */
+import BaseLayout       from '@layouts/BaseLayout.astro';
+import NewsletterSection from '@components/NewsletterSection.astro';
+import { Image }        from 'astro:assets';
+import { buildCanonical, buildBreadcrumbSchema } from '@utils/seo';
+import { resolveImage } from '@utils/imageResolver';
+import { getCollection, getEntry } from 'astro:content';
+import { SITE }         from '@data/site';
+
+// Load all non-draft comparisons, newest first
+const rawComparisons = (await getCollection('comparisons', (c) => !c.data.draft))
+  .sort((a, b) => a.data.publishDate < b.data.publishDate ? 1 : -1);
+
+// Resolve both product entries for each comparison up front
+const comparisons = await Promise.all(
+  rawComparisons.map(async (c) => {
+    const [productA, productB] = await Promise.all([
+      getEntry(c.data.productA),
+      getEntry(c.data.productB),
+    ]);
+    return { comparison: c, productA, productB };
+  })
+);
+
+const canonical = buildCanonical('/compare/');
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: 'Home',    url: '/' },
+  { name: 'Compare', url: '/compare/' },
+]);
+
+const itemListSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type':    'ItemList',
+  name:       'Product Comparisons — ' + SITE.name,
+  url:        SITE.url.replace(/\/$/, '') + '/compare/',
+  itemListElement: comparisons.map(({ comparison, productA, productB }, i) => ({
+    '@type':   'ListItem',
+    position:  i + 1,
+    url:       SITE.url.replace(/\/$/, '') + `/compare/${comparison.slug}/`,
+    name:      `${productA.data.name} vs ${productB.data.name}`,
+  })),
+});
+---
+
+<BaseLayout
+  title="Product Comparisons"
+  description={`Side-by-side product comparisons from ${SITE.name}. We pit top-rated products against each other so you don't have to.`}
+  canonical={canonical}
+  schema={[breadcrumbSchema, itemListSchema]}
+>
+
+  <!-- ── Hero ─────────────────────────────────────────────── -->
+  <section class="relative py-16 lg:py-24 bg-slate-900 text-white">
+    <div class="container">
+      <h1 class="font-serif text-4xl lg:text-5xl font-bold mb-4">
+        Product Comparisons
+      </h1>
+      <p class="text-lg text-white/70 max-w-2xl">
+        We put top products head-to-head so you can make the right call without
+        spending hours reading separate reviews.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Comparisons list ──────────────────────────────────── -->
+  <section class="section bg-white">
+    <div class="container">
+
+      {comparisons.length > 0 ? (
+        <ul class="flex flex-col gap-6" role="list">
+          {comparisons.map(({ comparison, productA, productB }) => {
+            const imgA = resolveImage(productA.data.image);
+            const imgB = resolveImage(productB.data.image);
+            return (
+              <li>
+                <a
+                  href={`/compare/${comparison.slug}/`}
+                  class="group flex flex-col sm:flex-row items-center gap-6 rounded-2xl border border-slate-200 p-6 hover:border-brand-accent hover:shadow-md transition-all no-underline"
+                  aria-label={`Compare ${productA.data.name} vs ${productB.data.name}`}
+                >
+
+                  <!-- Product A thumbnail -->
+                  <div class="flex-shrink-0 w-20 h-20 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-2">
+                    {imgA ? (
+                      <Image
+                        src={imgA}
+                        alt={productA.data.imageAlt || productA.data.name}
+                        widths={[80, 160]}
+                        sizes="80px"
+                        class="w-full h-full object-contain"
+                        loading="lazy"
+                      />
+                    ) : productA.data.image ? (
+                      <img
+                        src={productA.data.image}
+                        alt={productA.data.imageAlt || productA.data.name}
+                        width="80"
+                        height="80"
+                        class="w-full h-full object-contain"
+                        loading="lazy"
+                      />
+                    ) : null}
+                  </div>
+
+                  <!-- "vs" divider -->
+                  <span
+                    class="hidden sm:flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 text-xs font-bold text-slate-500 flex-shrink-0"
+                    aria-hidden="true"
+                  >vs</span>
+
+                  <!-- Product B thumbnail -->
+                  <div class="flex-shrink-0 w-20 h-20 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-2">
+                    {imgB ? (
+                      <Image
+                        src={imgB}
+                        alt={productB.data.imageAlt || productB.data.name}
+                        widths={[80, 160]}
+                        sizes="80px"
+                        class="w-full h-full object-contain"
+                        loading="lazy"
+                      />
+                    ) : productB.data.image ? (
+                      <img
+                        src={productB.data.image}
+                        alt={productB.data.imageAlt || productB.data.name}
+                        width="80"
+                        height="80"
+                        class="w-full h-full object-contain"
+                        loading="lazy"
+                      />
+                    ) : null}
+                  </div>
+
+                  <!-- Text content -->
+                  <div class="flex-1 min-w-0 text-center sm:text-left">
+                    <h2 class="font-bold text-lg text-slate-900 leading-snug group-hover:text-brand-accent transition-colors">
+                      {productA.data.name}
+                      <span class="text-slate-400 font-normal"> vs </span>
+                      {productB.data.name}
+                    </h2>
+
+                    <!-- Verdict snippet — first 160 chars -->
+                    <p class="text-sm text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+                      {comparison.data.verdict.slice(0, 160)}{comparison.data.verdict.length > 160 ? '…' : ''}
+                    </p>
+
+                    <p class="text-xs text-slate-400 mt-2">
+                      Published{' '}
+                      <time datetime={comparison.data.publishDate}>
+                        {new Date(comparison.data.publishDate + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                      </time>
+                    </p>
+                  </div>
+
+                  <!-- Arrow -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20" height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    class="flex-shrink-0 text-slate-300 group-hover:text-brand-accent group-hover:translate-x-1 transition-all hidden sm:block"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <div class="text-center py-20">
+          <p class="text-4xl mb-4">⚖️</p>
+          <h2 class="font-serif text-2xl font-bold text-slate-900 mb-3">
+            No comparisons yet
+          </h2>
+          <p class="text-slate-500 mb-8 max-w-sm mx-auto">
+            We're working on head-to-head comparisons. Check back soon, or
+            browse individual reviews in the meantime.
+          </p>
+          <a href="/reviews/" class="btn-primary">
+            Browse Reviews
+          </a>
+        </div>
+      )}
+
+    </div>
+  </section>
+
+  <NewsletterSection />
+
+</BaseLayout>
