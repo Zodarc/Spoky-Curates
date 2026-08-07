@@ -1,4 +1,4 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, reference, z } from 'astro:content';
 
 // ── Article collection schema ────────────────────────────────
 const articlesCollection = defineCollection({
@@ -99,6 +99,12 @@ const productsCollection = defineCollection({
       .optional()
       .describe('Editorial price label shown in the UI (e.g. "$99.99"). This is NOT a live price — update manually when the price changes.'),
 
+    // ISO-8601 date string (YYYY-MM-DD) recording when priceDisplay was last
+    // manually verified. Rendered in the UI as a trust signal.
+    // When a live price feed (PA-API) is wired up, this field can be
+    // populated automatically by the data pipeline instead of by hand.
+    priceLastVerified: z.string().date().optional(),
+
 
     // Review scoring
     rating: z.number()
@@ -174,3 +180,29 @@ const productsCollection = defineCollection({
 
   }),
 });
+
+// ── Comparisons collection schema ────────────────────────────
+const comparisonsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    // The two products being compared — resolved via Astro content references
+    productA: reference('products'),
+    productB: reference('products'),
+
+    // Short editorial summary of which product wins and why.
+    // Rendered verbatim below the side-by-side spec table.
+    verdict: z.string(),
+
+    // ISO-8601 date (YYYY-MM-DD)
+    publishDate: z.string().date(),
+
+    // Set to true to hide from the /compare/ index and skip static generation
+    draft: z.boolean().optional().default(false),
+  }),
+});
+
+export const collections = {
+  articles:    articlesCollection,
+  products:    productsCollection,
+  comparisons: comparisonsCollection,
+};

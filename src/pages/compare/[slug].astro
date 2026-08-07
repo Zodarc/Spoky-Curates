@@ -1,0 +1,190 @@
+---
+/**
+ * compare/[slug].astro — Individual product comparison page
+ *
+ * Route:  /compare/amazon-echo-vs-google-nest-audio/
+ *
+ * Loads the comparison entry, resolves both product references,
+ * and renders a side-by-side spec table + verdict.
+ */
+import BaseLayout      from '@layouts/BaseLayout.astro';
+import SpecTable       from '@components/SpecTable.astro';
+import AffiliateButton from '@components/AffiliateButton.astro';
+import Breadcrumbs     from '@components/Breadcrumbs.astro';
+import { Image }       from 'astro:assets';
+import { buildCanonical, buildBreadcrumbSchema } from '@utils/seo';
+import { resolveImage } from '@utils/imageResolver';
+import { getCollection, getEntry, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const comparisons = await getCollection('comparisons', (c) => !c.data.draft);
+  return comparisons.map((c) => ({ params: { slug: c.slug } }));
+}
+
+const { slug } = Astro.params;
+const comparison = await getEntry('comparisons', slug);
+if (!comparison) return Astro.redirect('/404');
+
+const [productA, productB] = await Promise.all([
+  getEntry(comparison.data.productA),
+  getEntry(comparison.data.productB),
+]);
+
+const { Content } = await render(comparison);
+
+const canonical = buildCanonical(`/compare/${slug}/`);
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: 'Home',    url: '/' },
+  { name: 'Compare', url: '/compare/' },
+  { name: `${productA.data.name} vs ${productB.data.name}`, url: `/compare/${slug}/` },
+]);
+
+const pageTitle = `${productA.data.name} vs ${productB.data.name}`;
+const pageDesc  = `Side-by-side comparison of the ${productA.data.name} and the ${productB.data.name}. Find out which one is the better buy.`;
+
+const imgA = resolveImage(productA.data.image);
+const imgB = resolveImage(productB.data.image);
+
+// Merge specs for the side-by-side table — only shown when both products
+// have at least one spec entry
+const hasSpecs =
+  Object.keys(productA.data.specs ?? {}).length > 0 ||
+  Object.keys(productB.data.specs ?? {}).length > 0;
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDesc}
+  canonical={canonical}
+  schema={breadcrumbSchema}
+>
+  <!-- ── Breadcrumbs ──────────────────────────────────────── -->
+  <div class="container">
+    <Breadcrumbs items={[
+      { label: 'Home',    href: '/' },
+      { label: 'Compare', href: '/compare/' },
+      { label: pageTitle, href: `/compare/${slug}/` },
+    ]} />
+  </div>
+
+  <article class="container pb-16 lg:pb-24">
+
+    <!-- ── Hero heading ─────────────────────────────────── -->
+    <header class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="font-serif text-4xl lg:text-5xl font-bold text-slate-900 leading-tight text-balance mb-4">
+        {productA.data.name}
+        <span class="text-slate-400 font-normal"> vs </span>
+        {productB.data.name}
+      </h1>
+      <p class="text-slate-500 text-lg">{pageDesc}</p>
+    </header>
+
+    <!-- ── Side-by-side product cards ──────────────────── -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16 max-w-3xl mx-auto">
+      {[
+        { product: productA, img: imgA },
+        { product: productB, img: imgB },
+      ].map(({ product, img }) => (
+        <div class="rounded-2xl border border-slate-200 overflow-hidden flex flex-col">
+
+          <!-- Product image -->
+          <div class="bg-slate-50 flex items-center justify-center aspect-square p-6">
+            {img ? (
+              <Image
+                src={img}
+                alt={product.data.imageAlt || product.data.name}
+                widths={[240, 480]}
+                sizes="(max-width: 640px) 50vw, 240px"
+                class="w-full h-full object-contain"
+                loading="eager"
+              />
+            ) : product.data.image ? (
+              <img
+                src={product.data.image}
+                alt={product.data.imageAlt || product.data.name}
+                width="240"
+                height="240"
+                class="w-full h-full object-contain"
+                loading="eager"
+              />
+            ) : null}
+          </div>
+
+          <!-- Product info -->
+          <div class="p-5 flex flex-col gap-3 flex-1">
+            <h2 class="font-bold text-lg text-slate-900 leading-snug">
+              {product.data.name}
+            </h2>
+
+            {product.data.rating && (
+              <p class="text-sm text-amber-500 font-semibold">
+                {'★'.repeat(Math.floor(product.data.rating))}
+                {product.data.rating % 1 >= 0.5 ? '½' : ''}
+                <span class="text-slate-500 font-normal ml-1">
+                  {product.data.rating} / 5
+                </span>
+              </p>
+            )}
+
+            {product.data.priceDisplay && (
+              <p class="text-2xl font-bold text-slate-900">
+                {product.data.priceDisplay}
+              </p>
+            )}
+
+            <div class="mt-auto pt-3">
+              <AffiliateButton
+                href={product.data.affiliateUrl}
+                label={product.data.affiliateLabel ?? 'Check Price on Amazon'}
+                size="sm"
+              />
+            </div>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    <!-- ── Side-by-side specs ───────────────────────────── -->
+    {hasSpecs && (
+      <div class="mb-16">
+        <SpecTable
+          specsA={productA.data.specs}
+          specsB={productB.data.specs}
+          labelA={productA.data.name}
+          labelB={productB.data.name}
+          heading="Specifications compared"
+        />
+      </div>
+    )}
+
+    <!-- ── Verdict box ──────────────────────────────────── -->
+    <div class="rounded-2xl bg-slate-900 text-white p-8 mb-12 max-w-3xl mx-auto">
+      <h2 class="font-serif text-2xl font-bold mb-3">Verdict</h2>
+      <p class="text-slate-300 leading-relaxed">{comparison.data.verdict}</p>
+    </div>
+
+    <!-- ── Full comparison body ─────────────────────────── -->
+    <div class="max-w-prose mx-auto prose prose-lg prose-slate">
+      <Content />
+    </div>
+
+    <!-- ── Links back to individual reviews ────────────── -->
+    <div class="max-w-prose mx-auto mt-12 pt-10 border-t border-slate-200 flex flex-col sm:flex-row gap-4">
+      <a
+        href={`/reviews/${productA.slug}/`}
+        class="btn btn-outline-dark flex-1 justify-center"
+      >
+        Full {productA.data.name} review →
+      </a>
+      <a
+        href={`/reviews/${productB.slug}/`}
+        class="btn btn-outline-dark flex-1 justify-center"
+      >
+        Full {productB.data.name} review →
+      </a>
+    </div>
+
+  </article>
+</BaseLayout>
