@@ -41,9 +41,8 @@ const author    = getAuthorById(data.author ?? 'spoky-curates');
 const canonical = buildCanonical(`/articles/${entry.slug}/`);
 
 // Reading time from rendered body
-const { Content, remarkPluginFrontmatter } = await entry.render();
-const bodyText    = remarkPluginFrontmatter?.rawContent ?? '';
-const readingTime = getReadingTime(bodyText);
+const { Content } = await entry.render();
+const readingTime = getReadingTime(entry.body);
 
 // Related articles
 const allArticles = await getCollection('articles', (a) => !a.data.draft);

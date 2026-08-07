@@ -21,6 +21,7 @@ export interface SeoProps {
  */
 export function buildTitle(title?: string): string {
   if (!title || title === SITE.name) return SITE.name + ' — ' + SITE.tagline;
+  if (title.includes(SITE.name)) return title;
   return `${title}${SITE.seo.titleSeparator}${SITE.name}`;
 }
 

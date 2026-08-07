@@ -17,7 +17,7 @@ export const SITE = {
     width:  180,
     height: 40,
   },
-  ogImage: '/images/brand/og-default.jpg',
+  ogImage: '/images/brand/og-default.png',
 
   // SEO defaults
   seo: {

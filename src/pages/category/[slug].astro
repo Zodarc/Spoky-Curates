@@ -19,7 +19,8 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.props;
-const category = getCategoryBySlug(slug)!;
+const category = getCategoryBySlug(slug);
+if (!category) return Astro.redirect('/404');
 
 // Fetch matching content
 const allArticles = await getCollection(
